@@ -10,5 +10,12 @@ namespace WHATechChallenge.Api.Models
         public Customer Customer { get; set; }
         public List<Bet> Bets { get; set; } = new List<Bet>();
 		public decimal TotalWinnings { get; set; }
+		public decimal TotalBet
+		{
+			get
+			{
+				return this.Bets.Sum(x => x.ReturnStake);
+			}
+		}
     }
 }
