@@ -25,6 +25,7 @@ namespace WHATechChallenge.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+			services.AddCors();
             services.AddTransient<IBettingEndpointConnector, BettingEndpointConnector>();
 			services.AddTransient<ITotalWinningsCalculationStrategy, DefaultTotalWinningsCalculationStrategy>();
 			services.AddTransient<ICustomerBetsCalculator, CustomerBetsCalculator>();
@@ -36,6 +37,7 @@ namespace WHATechChallenge.Api
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+			app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()); // To simplify things for now
             app.UseMvc();
         }
     }

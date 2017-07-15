@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WHATechChallenge.Api.Models;
 using WHATechChallenge.Api.Services;
+using Microsoft.AspNetCore.Cors;
 
 namespace WHATechChallenge.Api.Controllers
 {
@@ -16,7 +17,7 @@ namespace WHATechChallenge.Api.Controllers
         }
     
         [HttpGet]
-        public async Task<Customer[]> Get()
+		public async Task<Customer[]> Get()
         {
             return await this.bettingEndpointConnector.GetCustomersAsync();
         }
