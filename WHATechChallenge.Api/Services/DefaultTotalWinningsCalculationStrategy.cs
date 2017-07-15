@@ -21,7 +21,9 @@ namespace WHATechChallenge.Api.Services
 				return 0;
 			}
 
-			return customerBet.Bets.Sum(bet => bet.Won ? bet.ReturnStake : bet.ReturnStake * -1);
+			var results = customerBet.Bets.Select(bet => bet.Won ? bet.ReturnStake : (bet.ReturnStake * -1));
+
+			return results.Sum(r => r);
 		}
 	}
 }

@@ -21,20 +21,25 @@ namespace WHATechChallenge.Api.Services
 			var customers = await endpointConnector.GetCustomersAsync();
 			var bets = await endpointConnector.GetBetsAsync();
 
-			var customerBets = from customer in customers
-							   join bet in bets on customer.CustomerId equals bet.CustomerId into cb
-							   select new CustomerBet
-							   {
-								   Customer = customer,
-								   Bets = cb.ToList()
-							   };
+			var customerBets = (from customer in customers
+								join bet in bets on customer.Id equals bet.CustomerId into cb
+								select new CustomerBet
+								{
+									Customer = customer,
+									Bets = cb.ToList()
+								}).ToList();
+			
+			this.ApplyTotalWinnings(customerBets);
 
-			foreach (var customerBet in customerBets)
+			return customerBets.ToList();
+		}
+
+		private void ApplyTotalWinnings(IEnumerable<CustomerBet> customerBets)
+		{
+			foreach(var customerBet in customerBets)
 			{
 				customerBet.TotalWinnings = this.totalWinningsCalculationStrategy.CalculateTotalWinnings(customerBet);
 			}
-
-			return customerBets.ToList();
 		}
 	}
 }
