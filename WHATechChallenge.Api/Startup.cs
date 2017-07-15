@@ -26,6 +26,8 @@ namespace WHATechChallenge.Api
         {
             services.AddMvc();
             services.AddTransient<IBettingEndpointConnector, BettingEndpointConnector>();
+			services.AddTransient<ITotalWinningsCalculationStrategy, DefaultTotalWinningsCalculationStrategy>();
+			services.AddTransient<ICustomerBetsCalculator, CustomerBetsCalculator>();
             services.Configure<EndpointOptions>(Configuration.GetSection("Endpoints"));
         }
     
