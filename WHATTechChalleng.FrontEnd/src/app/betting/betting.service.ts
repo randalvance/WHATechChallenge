@@ -11,8 +11,9 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class BettingService {
 
-    private customerEndpoint: string = 'https://whatech-customerbets.azurewebsites.net/api/GetCustomers?code=ra4hpMmJYPeCXQAkyCVmmXOFFX7sM/oTiDzt7AY9eIeuUcDlTcb83A==&name=RandalVanceCunanan';
-    private betEndpoint: string = 'https://whatech-customerbets.azurewebsites.net/api/GetBets?code=ra4hpMmJYPeCXQAkyCVmmXOFFX7sM/oTiDzt7AY9eIeuUcDlTcb83A==&name=RandalVanceCunanan';
+    private baseUrl: string = 'http://localhost:5000/api/';
+    private customerEndpoint: string = `${this.baseUrl}customers`;
+    private betEndpoint: string = `${this.baseUrl}bets`;
 
     constructor(private http: Http) {
     }
@@ -28,7 +29,8 @@ export class BettingService {
     private getByEndpoint<T>(endPoint: string): Observable<T[]> {
         let headers = new Headers(
             {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             }
         );
 
