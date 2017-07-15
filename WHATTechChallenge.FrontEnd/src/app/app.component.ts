@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { BettingService } from './betting/betting.service';
-import { Bet, Customer } from './betting/models';
+import { Bet, Customer, CustomerBet } from './betting/models';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +12,12 @@ import { Bet, Customer } from './betting/models';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  private customers$: Observable<Customer[]>;
+  private customersBets$: Observable<CustomerBet[]>;
 
   constructor(private bettingService: BettingService) {
   }
 
   ngOnInit(): void {
-    this.customers$ = this.bettingService.getCustomers();
+    this.customersBets$ = this.bettingService.getCustomerBets();
   }
 }

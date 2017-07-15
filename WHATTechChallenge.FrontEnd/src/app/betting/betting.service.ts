@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Customer } from './models/customer';
-import { Bet } from './models/bet';
+import { Bet, Customer, CustomerBet } from './models';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -12,18 +11,23 @@ import 'rxjs/add/operator/catch';
 export class BettingService {
 
     private baseUrl: string = 'http://localhost:5000/api/';
-    private customerEndpoint: string = `${this.baseUrl}customers`;
-    private betEndpoint: string = `${this.baseUrl}bets`;
+    private customersEndpoint: string = `${this.baseUrl}customers`;
+    private betsEndpoint: string = `${this.baseUrl}bets`;
+    private customersbetEndpoint: string = `${this.baseUrl}customerbets`;
 
     constructor(private http: Http) {
     }
 
+    public getCustomerBets(): Observable<CustomerBet[]> {
+        return this.getByEndpoint<CustomerBet>(this.customersbetEndpoint)
+    }
+
     public getCustomers(): Observable<Customer[]> {
-        return this.getByEndpoint(this.customerEndpoint);
+        return this.getByEndpoint<Customer>(this.customersEndpoint);
     }
 
     public getBets(): Observable<Bet[]> {
-        return this.getByEndpoint(this.betEndpoint);
+        return this.getByEndpoint<Bet>(this.betsEndpoint);
     }
 
     private getByEndpoint<T>(endPoint: string): Observable<T[]> {
