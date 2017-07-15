@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,10 +6,35 @@ using WHATechChallenge.Api.Models;
 namespace WHATechChallenge.Api.Services
 {
 	public class CustomerBetsCalculator : ICustomerBetsCalculator
-    {
-		public Task<List<CustomerBet>> CalculateCustomerBetsAsync()
+	{
+		private IBettingEndpointConnector endpointConnector;
+		private ITotalWinningsCalculationStrategy totalWinningsCalculationStrategy;
+
+		public CustomerBetsCalculator(IBettingEndpointConnector endpointConnector, ITotalWinningsCalculationStrategy totalWinningsCalculationStrategy)
 		{
-			throw new NotImplementedException();
+			this.endpointConnector = endpointConnector;
+			this.totalWinningsCalculationStrategy = totalWinningsCalculationStrategy;
+		}
+
+		public async Task<List<CustomerBet>> CalculateCustomerBetsAsync()
+		{
+			var customers = await endpointConnector.GetCustomersAsync();
+			var bets = await endpointConnector.GetBetsAsync();
+
+			var customerBets = from customer in customers
+							   join bet in bets on customer.CustomerId equals bet.CustomerId into cb
+							   select new CustomerBet
+							   {
+								   Customer = customer,
+								   Bets = cb.ToList()
+							   };
+
+			foreach (var customerBet in customerBets)
+			{
+				customerBet.TotalWinnings = this.totalWinningsCalculationStrategy.CalculateTotalWinnings(customerBet);
+			}
+
+			return customerBets.ToList();
 		}
 	}
 }

@@ -11,7 +11,17 @@ namespace WHATechChallenge.Api.Services
 	{
 		public decimal CalculateTotalWinnings(CustomerBet customerBet)
 		{
-			throw new NotImplementedException();
+			if (customerBet == null)
+			{
+				throw new ArgumentNullException(nameof(customerBet));
+			}
+
+			if (customerBet.Bets == null || !customerBet.Bets.Any())
+			{
+				return 0;
+			}
+
+			return customerBet.Bets.Sum(bet => bet.Won ? bet.ReturnStake : bet.ReturnStake * -1);
 		}
 	}
 }
