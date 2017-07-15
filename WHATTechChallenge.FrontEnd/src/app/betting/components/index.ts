@@ -1,0 +1,1 @@
+export { CustomerBetsComponent } from './customer-bets.component';

@@ -1,0 +1,21 @@
+<div *ngFor="let customerBet of customerBets">
+  <h1>{{customerBet.customer.name}}</h1>
+  <h2>Total Bet: {{customerBet.totalBet}}</h2>
+  <h2>Total Winnings: {{customerBet.totalWinnings}}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Race ID</th>
+        <th>Return Stake</th>
+        <th>Won?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bet of customerBet.bets">
+        <td>{{bet.raceId}}</td>
+        <td>{{bet.returnStake}}</td>
+        <td>{{bet.won}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

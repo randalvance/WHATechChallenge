@@ -12,12 +12,12 @@ import { Bet, Customer, CustomerBet } from './betting/models';
 export class AppComponent implements OnInit {
   title = 'app';
 
-  private customersBets$: Observable<CustomerBet[]>;
+  private customerBets$: Observable<CustomerBet[]>;
 
   constructor(private bettingService: BettingService) {
   }
 
   ngOnInit(): void {
-    this.customersBets$ = this.bettingService.getCustomerBets();
+    this.customerBets$ = this.bettingService.getCustomerBets();
   }
 }
