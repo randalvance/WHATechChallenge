@@ -5,7 +5,7 @@ namespace WHATechChallenge.Api.Services
 {
   public interface IBettingEndpointConnector
   {
-    Task<Customer[]> GetBetsAsync();
+    Task<Bet[]> GetBetsAsync();
     Task<Customer[]> GetCustomersAsync();
   }
 }

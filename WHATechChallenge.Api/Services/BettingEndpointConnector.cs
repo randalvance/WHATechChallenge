@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using WHATechChallenge.Api.Models;
 using WHATechChallenge.Api.Options;
-using Microsoft.Extensions.Options;
 
 namespace WHATechChallenge.Api.Services
 {
-    public class BettingEndpointConnector : IBettingEndpointConnector
+	public class BettingEndpointConnector : IBettingEndpointConnector
   {
         private EndpointOptions endpointOptions;
 
@@ -31,7 +30,7 @@ namespace WHATechChallenge.Api.Services
             return customers;
         }
 
-        public async Task<Customer[]> GetBetsAsync()
+        public async Task<Bet[]> GetBetsAsync()
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
@@ -39,9 +38,9 @@ namespace WHATechChallenge.Api.Services
 
             var json = await client.GetStringAsync(endpointOptions.BetsEndpoint);
 
-            var customers = JsonConvert.DeserializeObject<Customer[]>(json);
+            var bets = JsonConvert.DeserializeObject<Bet[]>(json);
 
-            return customers;
+            return bets;
         }
     }
 }

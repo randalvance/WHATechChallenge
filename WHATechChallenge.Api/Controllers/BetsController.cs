@@ -16,7 +16,7 @@ namespace WHATechChallenge.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<Customer[]> Get()
+        public async Task<Bet[]> Get()
         {
             return await this.bettingEndpointConnector.GetBetsAsync();
         }
