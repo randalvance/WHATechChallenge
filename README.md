@@ -1,28 +1,37 @@
-# WhatechChallenge
+# WHA Tech Challenge
+Working application hosted in:
+http://whatechchallenge-randal.southeastasia.cloudapp.azure.com/
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
+## Running with Docker
+1. Make sure Docker is installed.
+2. Go to the root directory and run
+```
+docker-compose up -d
+```
+3. Wait for the download of images to complete
+4. Access the site at `http://localhost:8001`
+## Running Manually
+### Running the ASP.NET Core App
+1. Make sure .NET Core SDK is installed
+2. Make sure `appsettings.json` has it's `Endpoints` values pointing to the correct endpoints.
+3. Navigate to `WHATechChallenge.Api` directory
+4. Run the following command
+```
+dotnet run
+```
+5. Api will be available in `http://localhost:5000`
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Running the Angular App
+1. Make sure Node is installed (at least version 6)
+2. Navigate to `WHATechChallenge.FrontEnd` directory
+3. Run this command
+```
+ng serve
+```
+4. Site will be available at `http://localhost:4200`.
+## Running the Unit Tests
+1. Navigate to `WHATechChallenge.Api.Tests` directory
+2. Run this command
+```
+dotnet test
+```
