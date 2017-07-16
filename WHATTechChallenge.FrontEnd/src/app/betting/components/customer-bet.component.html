@@ -24,7 +24,7 @@
             <tbody>
                 <tr *ngFor="let bet of customerBet.bets" [ngClass]="{ 'table-success': bet.won, 'table-danger': !bet.won }">
                     <td>{{bet.raceId}}</td>
-                    <td>{{bet.returnStake}}</td>
+                    <td>{{bet.returnStake | currency:'USD':true}}</td>
                     <td><span class="outcome" *ngIf="bet.returnStake < 200 || !bet.won;else jackpot">{{bet.won ? 'Win' : 'Lost'}}</span></td>
                 </tr>
             </tbody>
