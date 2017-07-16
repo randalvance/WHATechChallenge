@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: whatechchallenge-frontend
+  labels:
+    app: whatechchallenge-frontend-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: whatechchallenge-frontend-deployment
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: whatechchallenge-frontend-deployment
+spec:
+  template:
+    metadata:
+      labels:
+        app: whatechchallenge-frontend-deployment
+    spec:
+      containers:
+      - name: whatechchallenge-frontend-instance
+        image: randal/whatechchallenge-frontend
+        ports:
+        - containerPort: 80
+        env:
+        - name: API_BASE_URL
+          value: http://whatechchallenge-api-randal.southeastasia.cloudapp.azure.com/api/
