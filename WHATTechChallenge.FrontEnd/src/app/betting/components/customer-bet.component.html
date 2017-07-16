@@ -22,11 +22,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let bet of customerBet.bets">
+                <tr *ngFor="let bet of customerBet.bets" [ngClass]="{ 'table-success': bet.won, 'table-danger': !bet.won }">
                     <td>{{bet.raceId}}</td>
                     <td>{{bet.returnStake}}</td>
-                    <td><span class="outcome" *ngIf="bet.returnStake < 200 || !bet.won;else jackpot"
-                        [ngClass]="{ 'win': bet.won, 'lose': !bet.won }">{{bet.won ? 'Win' : 'Lost'}}</span></td>
+                    <td><span class="outcome" *ngIf="bet.returnStake < 200 || !bet.won;else jackpot">{{bet.won ? 'Win' : 'Lost'}}</span></td>
                 </tr>
             </tbody>
         </table>
