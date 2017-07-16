@@ -17,8 +17,9 @@ import 'rxjs/add/operator/takeUntil';
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
-  private customerBets$: Observable<CustomerBet[]>;
-  private isLoading: Boolean = true;
+
+  customerBets$: Observable<CustomerBet[]>;
+  isLoading: Boolean = true;
 
   constructor(private bettingService: BettingService) {
   }

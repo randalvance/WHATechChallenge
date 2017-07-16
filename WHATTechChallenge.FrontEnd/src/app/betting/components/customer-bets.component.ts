@@ -9,7 +9,7 @@ import { CustomerBet } from '../models';
 export class CustomerBetsComponent implements OnInit {
 
     @Input()
-    private customerBets: CustomerBet[];
+    customerBets: CustomerBet[];
 
     ngOnInit(): void {
     }

@@ -7,10 +7,12 @@ import { Bet, Customer, CustomerBet } from './models';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class BettingService {
 
-    private baseUrl: string = 'http://localhost:5000/api/';
+    private baseUrl: string = environment.apiBaseUrl;
     private customersEndpoint: string = `${this.baseUrl}customers`;
     private betsEndpoint: string = `${this.baseUrl}bets`;
     private customersbetEndpoint: string = `${this.baseUrl}customerbets`;

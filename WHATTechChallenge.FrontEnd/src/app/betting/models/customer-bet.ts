@@ -4,5 +4,5 @@ export interface CustomerBet {
     customer: Customer,
     bets: Bet[],
     totalWinnings: number,
-    totalBet: number
+    totalReturnStake: number
 }

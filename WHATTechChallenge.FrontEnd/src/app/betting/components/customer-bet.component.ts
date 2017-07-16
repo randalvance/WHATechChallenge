@@ -8,9 +8,9 @@ import { CustomerBet } from '../models';
 })
 export class CustomerBetComponent implements OnInit {
     @Input()
-    private customerBet: CustomerBet;
+    customerBet: CustomerBet;
     
     ngOnInit(): void {
-        
+
     }
 }
