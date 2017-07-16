@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 
 import { BettingService } from './betting.service';
 
-import { CustomerBetsComponent } from './components';
+import { CustomerBetsComponent, CustomerBetComponent } from './components';
 
 @NgModule({
     imports: [
@@ -12,10 +12,12 @@ import { CustomerBetsComponent } from './components';
         HttpModule
     ],
     declarations: [
-        CustomerBetsComponent
+        CustomerBetsComponent,
+        CustomerBetComponent
     ],
     exports: [
-        CustomerBetsComponent
+        CustomerBetsComponent,
+        CustomerBetComponent
     ],
     providers: [
         BettingService

@@ -1,0 +1,16 @@
+<div class="customer-bid">
+    <div class="row">
+        <div class="col-md-6 customer-name">
+            {{customerBet.customer.name}}
+        </div>
+        <div class="col-md-3 total-bet">
+            <span class="label">Total Return Stake: </span> <span class="money">{{customerBet.totalReturnStake | currency:'USD':true}}</span>
+        </div>
+        <div class="col-md-3 total-winnings">
+            <span class="label">Total Winnings: </span> <span class="money" [ngClass]="{ 'gain': customerBet.totalWinnings > 0, 'loss': customerBet.totalWinnings < 0 }">{{customerBet.totalWinnings}}</span>
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+</div>
