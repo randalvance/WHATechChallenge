@@ -19,28 +19,25 @@ namespace WHATechChallenge.Api.Services
 
         public async Task<Customer[]> GetCustomersAsync()
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var json = await client.GetStringAsync(endpointOptions.CustomersEndpoint);
-
-            var customers = JsonConvert.DeserializeObject<Customer[]>(json);
-
-            return customers;
-        }
+			return await this.GetFromEndpoint<Customer>(endpointOptions.CustomersEndpoint);
+		}
 
         public async Task<Bet[]> GetBetsAsync()
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var json = await client.GetStringAsync(endpointOptions.BetsEndpoint);
-
-            var bets = JsonConvert.DeserializeObject<Bet[]>(json);
-
-            return bets;
+			return await this.GetFromEndpoint<Bet>(endpointOptions.BetsEndpoint);
         }
+
+		private async Task<T[]> GetFromEndpoint<T>(string endpoint)
+		{
+			var client = new HttpClient();
+			client.DefaultRequestHeaders.Accept.Clear();
+			client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+			var json = await client.GetStringAsync(endpoint);
+
+			var objects = JsonConvert.DeserializeObject<T[]>(json);
+
+			return objects;
+		}
     }
 }
