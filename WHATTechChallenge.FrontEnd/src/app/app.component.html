@@ -1,1 +1,4 @@
 <wha-customer-bets [customerBets]="customerBets$ | async"></wha-customer-bets>
+<div class="center" *ngIf="isLoading">
+  <img src="/assets/loading.gif" />
+</div>
