@@ -1,0 +1,19 @@
+version: '2'
+services:
+  whatechchallange-frontend:
+    image: 'randal/whatechchallenge-frontend:latest'
+    container_name: 'whatechchallange-frontend-instance'
+    ports:
+     - '8001:80'
+    environment:
+     - API_BASE_URL=http://localhost:8181/api/
+    depends_on:
+     - whatechchallenge-api
+  whatechchallenge-api:
+    image: 'randal/whatechchallenge-api:latest'
+    container_name: 'whatechchallenge-api-instance'
+    ports:
+     - '8181:80'
+    environment:
+     - Endpoints:CustomersEndpoint=https://whatech-customerbets.azurewebsites.net/api/GetCustomers?code=ra4hpMmJYPeCXQAkyCVmmXOFFX7sM/oTiDzt7AY9eIeuUcDlTcb83A==&name=RandalVanceCunanan
+     - Endpoints:BetsEndpoint=https://whatech-customerbets.azurewebsites.net/api/GetBets?code=ra4hpMmJYPeCXQAkyCVmmXOFFX7sM/oTiDzt7AY9eIeuUcDlTcb83A==&name=RandalVanceCunanan
