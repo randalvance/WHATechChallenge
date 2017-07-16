@@ -31,7 +31,7 @@ namespace WHATechChallenge.Api.Tests
 			var totalWinnings = target.CalculateTotalWinnings(customerBet);
 
 			// Assert
-			Assert.Equal(600, totalWinnings);
+			Assert.Equal(1000, totalWinnings);
 		}
 
 		[Fact]

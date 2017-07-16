@@ -1,18 +1,35 @@
 <div class="customer-bid">
-    <div class="row">
-        <div class="col-md-6 customer-name">
-            {{customerBet.customer.name}}
+    <header class="row">
+        <div class="col-md-6 customer-name vertical-align-center">
+            <h3>{{customerBet.customer.name}}</h3>
         </div>
-        <div class="col-md-3 total-bet">
+        <div class="col-md-3 total-bet vertical-align-center ">
             <span class="label">Total Return Stake: </span> <span class="money">{{customerBet.totalReturnStake | currency:'USD':true}}</span>
         </div>
-        <div class="col-md-3 total-winnings">
+        <div class="col-md-3 total-winnings vertical-align-center">
             <span class="label">Total Winnings: </span> 
-            <span class="money" [ngClass]="{ 'gain': customerBet.totalWinnings > 0, 'loss': customerBet.totalWinnings < 0 }">
+            <span class="money" [ngClass]="{ 'win': customerBet.totalWinnings > 0 }">
                 {{customerBet.totalWinnings | currency:'USD':true}}</span>
         </div>
-    </div>
-    <div class="row">
-
+    </header>
+    <div>
+        <table class="table table-collapsed">
+            <thead>
+                <tr>
+                    <th>Race ID</th>
+                    <th>Return Stake</th>
+                    <th>Won?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bet of customerBet.bets">
+                    <td>{{bet.raceId}}</td>
+                    <td>{{bet.returnStake}}</td>
+                    <td><span class="outcome" *ngIf="bet.returnStake < 200 || !bet.won;else jackpot"
+                        [ngClass]="{ 'win': bet.won, 'lose': !bet.won }">{{bet.won ? 'Win' : 'Lost'}}</span></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+<ng-template #jackpot><img src="/assets/jackpot.png" alt="Jackpot" class="jackpot" /></ng-template>

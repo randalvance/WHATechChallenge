@@ -1,16 +1,40 @@
 .customer-bid {
-    background: silver;
-    border: 1px solid gray;
+    padding: 10px;
+
+    header {
+        padding: 10px;
+        background: #dedede;
+        border: 1px solid #c3c3c3;
+    }
 }
 
-.money {
+.bold {
     font-weight: bold;
 }
 
-.gain {
+.outcome {
+    @extend .bold;
+    font-weight: bold;
+}
+
+.money {
+    @extend .bold;
+    margin-left: 5px;
+}
+
+.win {
     color: #080;
 }
 
-.loss {
+.lose {
     color: #800;
+}
+
+.jackpot {
+    width: 100px;
+}
+
+.vertical-align-center {
+    display: flex;
+    align-items: center;
 }

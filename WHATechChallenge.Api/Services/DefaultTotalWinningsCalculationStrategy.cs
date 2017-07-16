@@ -5,7 +5,7 @@ using WHATechChallenge.Api.Models;
 namespace WHATechChallenge.Api.Services
 {
 	/// <summary>
-	/// This default calculation strategy adds to total winnings if race is won, and remove to total winnigns if race is lost
+	/// This default calculation strategy adds to total winnings if race is won
 	/// </summary>
 	public class DefaultTotalWinningsCalculationStrategy : ITotalWinningsCalculationStrategy
 	{
@@ -21,7 +21,7 @@ namespace WHATechChallenge.Api.Services
 				return 0;
 			}
 
-			var results = customerBet.Bets.Select(bet => bet.Won ? bet.ReturnStake : (bet.ReturnStake * -1));
+			var results = customerBet.Bets.Select(bet => bet.Won ? bet.ReturnStake : 0);
 
 			return results.Sum(r => r);
 		}
